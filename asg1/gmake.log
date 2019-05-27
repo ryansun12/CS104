@@ -1,0 +1,2 @@
+g++ -std=gnu++17 -g -O0 -Wall -Wextra -c main.cpp
+g++ -std=gnu++17 -g -O0 -Wall -Wextra auxlib.o string_set.o main.o -o oc

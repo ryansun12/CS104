@@ -1,0 +1,15 @@
+Assignment 4
+Ryan Sun 
+ryjsun@ucsc.edu
+
+symbol table assignment
+
+-main.cpp
+-auxlib.h/cpp
+-astree.h/cpp
+-parser.y
+-scanner.l
+-string_set.h/cpp
+-sym.h/cpp 
+   Files for making the symbol table per assignment specifications
+-lyutils.h/cpp

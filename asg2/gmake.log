@@ -1,0 +1,19 @@
+gmake --no-print-directory deps
+flex --outfile=yylex.cpp scanner.l
+bison --defines=yyparse.h --output=yyparse.cpp --xml parser.y
+xsltproc /usr/share/bison/xslt/xml2xhtml.xsl yyparse.xml >yyparse.html
+g++ -MM -std=gnu++14 astree.cpp lyutils.cpp string_set.cpp auxlib.cpp main.cpp yylex.cpp yyparse.cpp >>Makefile.deps
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c astree.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c lyutils.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c string_set.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c auxlib.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c main.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -Wno-sign-compare -c yylex.cpp
+In file included from scanner.l:8:
+lyutils.h:23:15: error: conflicting declaration ‘size_t yyleng’
+ extern size_t yyleng;
+               ^~~~~~
+yylex.cpp:332:5: note: previous declaration as ‘int yyleng’
+ static int yy_n_chars;  /* number of characters read into yy_ch_buf */
+     ^~~~~~
+gmake: *** [Makefile:41: yylex.o] Error 1

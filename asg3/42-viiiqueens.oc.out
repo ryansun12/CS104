@@ -1,0 +1,63 @@
+; 0.  1: # 1 "42-viiiqueens.oc"; 1.  0: 
+; 1.  1: # 1 "<built-in>"
+; 2.  1: # 1 "<command-line>"
+; 3.  1: # 1 "/usr/include/stdc-predef.h" 1 3 4
+; 4.  1: # 1 "<command-line>" 2
+; 5.  1: # 1 "42-viiiqueens.oc"
+; 6.  1: 
+; 6.  2: 
+; 6.  3: # 1 "oclib.h" 1
+; 7.  1: # 22 "oclib.h"
+; 8. 22: void fail (string expr, string file, int line);
+; 8. 23: 
+; 8. 24: void putchr (int chr);
+; 8. 25: void putint (int num);
+; 8. 26: void putstr (string str);
+; 8. 27: 
+; 8. 28: int getchr();
+; 8. 29: string getstr();
+; 8. 30: string getln();
+; 8. 31: # 4 "42-viiiqueens.oc" 2
+; 9.  4: 
+; 9.  5: 
+; 9.  6: array<int> board = nullptr;
+; 9.  7: 
+; 9.  8: int is_safe (int newcol) {
+; 9.  9:    int col = 0;
+; 9. 10:    int diagonal = 0;
+; 9. 11:    while (col < newcol) {
+; 9. 12:       if (board[col] == board[newcol]) return 0;
+; 9. 13:       diagonal = board[col] - board[newcol];
+; 9. 14:       if (diagonal == col - newcol) return 0;
+; 9. 15:       if (diagonal == newcol - col) return 0;
+; 9. 16:       col = col + 1;
+; 9. 17:    }
+; 9. 18:    return 1;
+; 9. 19: }
+; 9. 20: 
+; 9. 21: void printqueens() {
+; 9. 22:    int col = 0;
+; 9. 23:    while (col < 8) {
+; 9. 24:       putchr (board[col] + '1');
+; 9. 25:       col = col + 1;
+; 9. 26:    }
+; 9. 27:    putchr ('\n');
+; 9. 28: }
+; 9. 29: 
+; 9. 30: void queens (int newcol) {
+; 9. 31:    int row = 0;
+; 9. 32:    if (newcol == 8) printqueens();
+; 9. 33:    else {
+; 9. 34:       while (row < 8) {
+; 9. 35:          board[newcol] = row;
+; 9. 36:          if (is_safe (newcol)) queens (newcol + 1);
+; 9. 37:          row = row + 1;
+; 9. 38:       }
+; 9. 39:    }
+; 9. 40: }
+; 9. 41: 
+; 9. 42: int main() {
+; 9. 43:    board = alloc<array<int>> (8);
+; 9. 44:    queens (0);
+; 9. 45:    return 0;
+; 9. 46: }

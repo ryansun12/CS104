@@ -1,0 +1,56 @@
+; 0.  1: # 1 "21-eratosthenes.oc"; 1.  0: 
+; 1.  1: # 1 "<built-in>"
+; 2.  1: # 1 "<command-line>"
+; 3.  1: # 1 "/usr/include/stdc-predef.h" 1 3 4
+; 4.  1: # 1 "<command-line>" 2
+; 5.  1: # 1 "21-eratosthenes.oc"
+; 6.  1: 
+; 6.  2: 
+; 6.  3: # 1 "oclib.h" 1
+; 7.  1: # 22 "oclib.h"
+; 8. 22: void fail (string expr, string file, int line);
+; 8. 23: 
+; 8. 24: void putchr (int chr);
+; 8. 25: void putint (int num);
+; 8. 26: void putstr (string str);
+; 8. 27: 
+; 8. 28: int getchr();
+; 8. 29: string getstr();
+; 8. 30: string getln();
+; 8. 31: # 4 "21-eratosthenes.oc" 2
+; 9.  4: 
+; 9.  5: 
+; 9.  6: 
+; 9.  7: 
+; 9.  8: int main() {
+; 9.  9:    int prime = 2;
+; 9. 10:    int index = 2;
+; 9. 11:    array<int> sieve = alloc<array<int>>(100);
+; 9. 12: 
+; 9. 13:    while (index < 100) {
+; 9. 14:       sieve[index] = 1;
+; 9. 15:       index = index + 1;
+; 9. 16:    }
+; 9. 17: 
+; 9. 18:    while (prime < 100) {
+; 9. 19:       if (sieve[prime]) {
+; 9. 20:          index = prime * 2;
+; 9. 21:          while (index < 100) {
+; 9. 22:             sieve[index] = 0;
+; 9. 23:             index = index + prime;
+; 9. 24:          }
+; 9. 25:       }
+; 9. 26:       prime = prime + 1;
+; 9. 27:    }
+; 9. 28: 
+; 9. 29:    index = 2;
+; 9. 30:    while (index < 100) {
+; 9. 31:       if (sieve[index]) {
+; 9. 32:          putint (index);
+; 9. 33:          putchr ('\n');
+; 9. 34:       }
+; 9. 35:       index = index + 1;
+; 9. 36:    }
+; 9. 37: 
+; 9. 38:    return 0;
+; 9. 39: }

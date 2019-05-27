@@ -1,0 +1,48 @@
+; 0.  1: # 1 "45-towers-of-hanoi.oc"; 1.  0: 
+; 1.  1: # 1 "<built-in>"
+; 2.  1: # 1 "<command-line>"
+; 3.  1: # 1 "/usr/include/stdc-predef.h" 1 3 4
+; 4.  1: # 1 "<command-line>" 2
+; 5.  1: # 1 "45-towers-of-hanoi.oc"
+; 6.  1: 
+; 6.  2: 
+; 6.  3: # 1 "oclib.h" 1
+; 7.  1: # 22 "oclib.h"
+; 8. 22: void fail (string expr, string file, int line);
+; 8. 23: 
+; 8. 24: void putchr (int chr);
+; 8. 25: void putint (int num);
+; 8. 26: void putstr (string str);
+; 8. 27: 
+; 8. 28: int getchr();
+; 8. 29: string getstr();
+; 8. 30: string getln();
+; 8. 31: # 4 "45-towers-of-hanoi.oc" 2
+; 9.  4: 
+; 9.  5: void move (string src, string dst) {
+; 9.  6:    putstr ("Move a disk from the ");
+; 9.  7:    putstr (src);
+; 9.  8:    putstr (" to the ");
+; 9.  9:    putstr (dst);
+; 9. 10:    putstr (".\n");
+; 9. 11: }
+; 9. 12: 
+; 9. 13: void towers (int ndisks, string src, string tmp, string dst) {
+; 9. 14:    if (ndisks < 1) return;
+; 9. 15:    towers (ndisks - 1, src, dst, tmp);
+; 9. 16:    move (src, dst);
+; 9. 17:    towers (ndisks - 1, tmp, src, dst);
+; 9. 18: }
+; 9. 19: 
+; 9. 20: int main (int argc, array<string> argv) {
+; 9. 21:    {if (not (argc == 2)) fail ("argc == 2", "45-towers-of-hanoi.oc", 21);};
+; 9. 22:    int count = argv[1][0] - '0';
+; 9. 23:    {if (not (count > 0)) fail ("count > 0", "45-towers-of-hanoi.oc", 23);};
+; 9. 24:    {if (not (count < 9)) fail ("count < 9", "45-towers-of-hanoi.oc", 24);};
+; 9. 25:    putstr (argv[0]);
+; 9. 26:    putstr (": ");
+; 9. 27:    putint (count);
+; 9. 28:    putstr (" disks\n");
+; 9. 29:    towers (count, "source", "temporary", "distination");
+; 9. 30:    return 0;
+; 9. 31: }
