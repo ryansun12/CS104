@@ -30,5 +30,6 @@ void handle_func(FILE*out, astree* node);
 void handle_struct(FILE*out, astree* node);
 void handle_vardecl(FILE*out, astree* node);
 void set_attr(astree* node, symbol* sym);
+bool type_check(astree* node);
 #endif
 
