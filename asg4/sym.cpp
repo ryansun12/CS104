@@ -45,6 +45,28 @@ void traversal(FILE* out, astree* node) {
 void handle_func(FILE* out, astree* node) {
 //   printf("DEBUG>>> start function handling...\n");
    node->attributes[static_cast<unsigned>(attr::FUNCTION)] = 1;
+   switch(node->children[0]->children[0]->symbol){
+     case TOK_INT: {
+          node->attributes[static_cast<unsigned>(attr::INT)] = 1;
+          break; 
+          }
+     case TOK_STRING: {
+          node->attributes[static_cast<unsigned>(attr::STRING)] = 1;
+          break; 
+          }
+     case TOK_NULLPTR: {
+          node->attributes[static_cast<unsigned>(attr::NULLPTR_T)] = 1;
+          break; 
+          }
+     case TOK_VOID: {
+          node->attributes[static_cast<unsigned>(attr::VOID)] = 1;
+          break; 
+          }
+    // case TOK_PTR: {
+     //     node->attributes[static_cast<unsigned>(attr::PTR)] = 1;
+     //     break; 
+     //     }
+    }
    string* name = 
    const_cast<string*>(node->children[0]->children[1]->lexinfo);
    if (global.find(name) != global.end()) {
@@ -139,12 +161,19 @@ void handle_func(FILE* out, astree* node) {
             }
          //   printf("DEBUG>>> Block child[%0d] completed\n",
           //         static_cast<int>(j));
+           else if (child->children[j]->symbol == '='){
+              //todo ???
+             }
            }
+          }
+          if(type_check(child) == false) { 
+           errprintf("type check error"); return; 
           }
           break;
      default: break;
     } 
    }
+   fprintf(out, "\n");
 //   printf("DEBUG>>> function handling completed\n");
 }
 
@@ -191,6 +220,7 @@ void handle_struct(FILE* out, astree* node) {
      print_symbol(out, fname, fsym, 1);
     }
    }
+   fprintf(out, "\n");
 }
 
 void handle_vardecl(FILE* out, astree* node) {
@@ -401,4 +431,27 @@ void set_attr(astree* node, symbol* symb) {
      }
    }
 }
-
+bool type_check (astree* node) {
+ for (uint i = 0; i < node->children.size(); i++ ) {
+   switch(node->children[i]->symbol) {
+   case TOK_VOID: { 
+        if (node->symbol == TOK_FUNCTION) {
+          errprintf("cannot have void function");
+          return false; } break;
+         }
+   case '=': {
+         if ( node->children[i]->children[0]->symbol == TOK_NULLPTR) {
+          errprintf("cannot have null operand"); 
+          return false; } break;
+         }
+   case TOK_ARROW: {
+        if (node->children[i]->children[0]->attributes[
+           static_cast<unsigned>(attr::STRUCT)]  != 1) {
+           errprintf("left oper of '->' has to be struct");
+           return false; } break;
+         }
+   default: break;
+   } 
+ }
+ return true;
+}
