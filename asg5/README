@@ -1,0 +1,18 @@
+Assignment 5
+Ryan Sun 
+ryjsun@ucsc.edu
+
+Intermediate Language Emitter
+
+
+Files included
+
+-main.cpp
+-auxlib.h/cpp
+-astree.h/cpp
+-parser.y
+-scanner.l
+-string_set.h/cpp
+-sym.h/cpp 
+-lyutils.h/cpp
+-emitter.h/cpp per project 5 specifications

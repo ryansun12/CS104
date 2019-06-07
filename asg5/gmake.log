@@ -1,0 +1,15 @@
+gmake --no-print-directory deps
+flex --outfile=yylex.cpp scanner.l
+bison --defines=yyparse.h --output=yyparse.cpp parser.y
+parser.y: warning: 31 shift/reduce conflicts [-Wconflicts-sr]
+g++ -MM -std=gnu++17 astree.cpp emitter.cpp lyutils.cpp string_set.cpp auxlib.cpp sym.cpp main.cpp yylex.cpp yyparse.cpp >>Makefile.deps
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -c astree.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -c emitter.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -c lyutils.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -c string_set.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -c auxlib.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -c sym.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -c main.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -Wno-sign-compare -c yylex.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -c yyparse.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++17 -o oc astree.o emitter.o lyutils.o string_set.o auxlib.o sym.o main.o yylex.o yyparse.o
