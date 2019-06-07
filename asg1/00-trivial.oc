@@ -1,5 +1,0 @@
-// $Id: 00-trivial.oc,v 1.5 2018-12-07 13:25:23-08 - - $
-//
-// This program does nothing but does not produce error messages.
-// The linker will complain about a missing "main" symbol.
-//
