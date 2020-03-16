@@ -1,6 +1,4 @@
-// Ryan Sun
-// ryjsun@ucsc.edu
-// 1609724
+
 // CS104 asg2
 
 #include <iostream>

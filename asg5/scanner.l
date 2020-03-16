@@ -1,6 +1,4 @@
-/* Ryan Sun
-* 1609724
-* asg2 scanner
+/* 
 some code copied from lexer.l */
 
 %{
